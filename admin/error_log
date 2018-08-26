@@ -1,0 +1,8 @@
+[23-Aug-2018 19:36:07 Europe/Sofia] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Duplicate entry '230-2' for key 'PRIMARY'<br />Error No: 1062<br />INSERT INTO oc_cmsblock_description SET cmsblock_des_id = '230', language_id = '2', cmsblock_id = '34', title = 'Contact Us', description = '																																																									'' in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/braincha/public_html/highzilla.bg/system/library/db.php(16): DB\MySQLi->query('INSERT INTO oc_...', Array)
+#1 /home/braincha/public_html/highzilla.bg/system/storage/modification/admin/model/localisation/language.php(202): DB->query('INSERT INTO oc_...')
+#2 [internal function]: ModelLocalisationLanguage->addLanguage(Array)
+#3 /home/braincha/public_html/highzilla.bg/system/storage/modification/system/engine/loader.php(178): call_user_func_array(Array, Array)
+#4 [internal function]: Loader->{closure}(Array, Array)
+#5 /home/braincha/public_html/highzilla.bg/system/engine/proxy.php(25): call_user_func_arr in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php on line 40

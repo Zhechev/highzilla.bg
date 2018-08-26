@@ -4,7 +4,6 @@ class ControllerCommonFooter extends Controller {
 		$this->load->language('common/footer');
 
 		$data['scripts'] = $this->document->getScripts('footer');
-
 		$data['text_information'] = $this->language->get('text_information');
 		$data['text_service'] = $this->language->get('text_service');
 		$data['text_extra'] = $this->language->get('text_extra');
@@ -19,6 +18,14 @@ class ControllerCommonFooter extends Controller {
 		$data['text_order'] = $this->language->get('text_order');
 		$data['text_wishlist'] = $this->language->get('text_wishlist');
 		$data['text_newsletter'] = $this->language->get('text_newsletter');
+		$data['text_shipping'] = $this->language->get('text_shipping');
+		$data['text_amazon'] = $this->language->get('text_amazon');
+		$data['text_manage'] = $this->language->get('text_manage');
+		$data['text_payment'] = $this->language->get('text_payment');
+		$data['text_des'] = $this->language->get('text_des');
+		$data['text_help'] = $this->language->get('text_help');
+		
+		
 
 		$this->load->model('catalog/information');
 
@@ -45,7 +52,7 @@ class ControllerCommonFooter extends Controller {
 		$data['wishlist'] = $this->url->link('account/wishlist', '', true);
 		$data['newsletter'] = $this->url->link('account/newsletter', '', true);
 
-		$data['powered'] = sprintf($this->language->get('text_powered'), $this->config->get('config_name'), date('Y', time()));
+		$data['copyright'] = sprintf($this->language->get('copyright'), $this->config->get('config_name'), date('Y', time()));
 
 		// Whos Online
 		if ($this->config->get('config_customer_online')) {

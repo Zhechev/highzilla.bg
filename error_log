@@ -1,0 +1,44 @@
+[23-Aug-2018 15:31:19 Europe/Sofia] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Table 'braincha_highzilla.bg.oc_extension' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_extension WHERE `type` = 'openbay'' in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/braincha/public_html/highzilla.bg/system/library/db.php(16): DB\MySQLi->query('SELECT * FROM o...', Array)
+#1 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(117): DB->query('SELECT * FROM o...')
+#2 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(10): Openbay->getInstalled()
+#3 /home/braincha/public_html/highzilla.bg/system/engine/loader.php(110): Openbay->__construct(Object(Registry))
+#4 /home/braincha/public_html/highzilla.bg/system/framework.php(81): Loader->library('openbay')
+#5 /home/braincha/public_html/highzilla.bg/system/startup.php(124): require_once('/home/braincha/...')
+#6 /home/braincha/public_html/highzilla.bg/index.php(19): start('catalog')
+#7 {main}
+  thrown in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php on line 40
+[23-Aug-2018 15:31:19 Europe/Sofia] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Table 'braincha_highzilla.bg.oc_extension' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_extension WHERE `type` = 'openbay'' in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/braincha/public_html/highzilla.bg/system/library/db.php(16): DB\MySQLi->query('SELECT * FROM o...', Array)
+#1 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(117): DB->query('SELECT * FROM o...')
+#2 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(10): Openbay->getInstalled()
+#3 /home/braincha/public_html/highzilla.bg/system/engine/loader.php(110): Openbay->__construct(Object(Registry))
+#4 /home/braincha/public_html/highzilla.bg/system/framework.php(81): Loader->library('openbay')
+#5 /home/braincha/public_html/highzilla.bg/system/startup.php(124): require_once('/home/braincha/...')
+#6 /home/braincha/public_html/highzilla.bg/index.php(19): start('catalog')
+#7 {main}
+  thrown in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php on line 40
+[23-Aug-2018 15:31:22 Europe/Sofia] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Table 'braincha_highzilla.bg.oc_extension' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_extension WHERE `type` = 'openbay'' in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/braincha/public_html/highzilla.bg/system/library/db.php(16): DB\MySQLi->query('SELECT * FROM o...', Array)
+#1 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(117): DB->query('SELECT * FROM o...')
+#2 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(10): Openbay->getInstalled()
+#3 /home/braincha/public_html/highzilla.bg/system/engine/loader.php(110): Openbay->__construct(Object(Registry))
+#4 /home/braincha/public_html/highzilla.bg/system/framework.php(81): Loader->library('openbay')
+#5 /home/braincha/public_html/highzilla.bg/system/startup.php(124): require_once('/home/braincha/...')
+#6 /home/braincha/public_html/highzilla.bg/index.php(19): start('catalog')
+#7 {main}
+  thrown in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php on line 40
+[23-Aug-2018 15:31:22 Europe/Sofia] PHP Fatal error:  Uncaught exception 'Exception' with message 'Error: Table 'braincha_highzilla.bg.oc_extension' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_extension WHERE `type` = 'openbay'' in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/braincha/public_html/highzilla.bg/system/library/db.php(16): DB\MySQLi->query('SELECT * FROM o...', Array)
+#1 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(117): DB->query('SELECT * FROM o...')
+#2 /home/braincha/public_html/highzilla.bg/system/library/openbay.php(10): Openbay->getInstalled()
+#3 /home/braincha/public_html/highzilla.bg/system/engine/loader.php(110): Openbay->__construct(Object(Registry))
+#4 /home/braincha/public_html/highzilla.bg/system/framework.php(81): Loader->library('openbay')
+#5 /home/braincha/public_html/highzilla.bg/system/startup.php(124): require_once('/home/braincha/...')
+#6 /home/braincha/public_html/highzilla.bg/index.php(19): start('catalog')
+#7 {main}
+  thrown in /home/braincha/public_html/highzilla.bg/system/library/db/mysqli.php on line 40
