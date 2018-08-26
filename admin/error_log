@@ -1,0 +1,2 @@
+[24-Aug-2018 00:09:09 Europe/Sofia] PHP Parse error:  syntax error, unexpected 'ControllerBlogArticle' (T_STRING) in /home/braincha/public_html/dev.highzilla.bg/admin/controller/blog/article.php on line 1
+[24-Aug-2018 00:09:18 Europe/Sofia] PHP Parse error:  syntax error, unexpected 'ModelBlogArticle' (T_STRING) in /home/braincha/public_html/dev.highzilla.bg/admin/model/blog/article.php on line 1

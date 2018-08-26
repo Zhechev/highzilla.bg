@@ -21,8 +21,62 @@ function getURLVar(key) {
 		}
 	}
 }
-
-$(document).ready(function() {
+function isEmpty( el ){
+  return !$.trim(el.html())
+}
+$(document).ajaxStop(function() {
+	function isEmpty( el ){
+		return !$.trim(el.html())
+	}
+	if (!isEmpty($('#product'))) {
+		  $('#product').addClass('has-option');      
+	}	
+});
+function customResponsive(){
+	var window_w = parseInt($(window).width());
+	if(window_w <= 480){
+		$('.home2 .logo-container').after($('.home2 .search-containers'));
+		$('.home4 .search-container.col-sm-3').before($('.home4 .logo-container'));
+	} else {
+		$('.home2 .block-right').prepend($('.home2 .search-containers'));
+		$('.home4 .search-container.col-sm-3').after($('.home4 .logo-container'));
+	}
+}
+$(window).resize(function() {
+	customResponsive();
+});
+// sticky menu
+function stickyMenu(){
+  var winInnW = window.innerWidth;
+  var winScrT = $(window).scrollTop();
+  var s0w991  = winScrT>300 && winInnW>1024;
+  $(".top-menu").toggleClass("fix-header", s0w991);
+  
+}
+stickyMenu();
+$(window).on('resize scroll', stickyMenu);
+$(document).ready(function() {	
+	
+	customResponsive();
+	
+	if (!isEmpty($('#product'))) {
+		  $('#product').addClass('has-option');      
+	}
+	if (!isEmpty($('#product2'))) {
+		  $('#product2').addClass('has-option');      
+	}
+	
+	// move breadcrumbs
+	$('header').after('<div class="breadcrumbs"><div class="container"></div></div>');	
+	var breadcrumb = $('ul.breadcrumb');
+	var breadcrumbs_container = $('.breadcrumbs .container');
+	breadcrumb.appendTo(breadcrumbs_container);
+	
+	// move category name
+	//$('header').after('<div class="title-category"></div>');
+	//var category_name = $('h2.category-name');
+	//category_name.appendTo('.title-category');
+	
 	// Highlight any found errors
 	$('.text-danger').each(function() {
 		var element = $(this).parent().parent();
@@ -54,7 +108,7 @@ $(document).ready(function() {
 	$('#search input[name=\'search\']').parent().find('button').on('click', function() {
 		var url = $('base').attr('href') + 'index.php?route=product/search';
 
-		var value = $('header #search input[name=\'search\']').val();
+		var value = $('#search input[name=\'search\']').val();
 
 		if (value) {
 			url += '&search=' + encodeURIComponent(value);
@@ -65,7 +119,7 @@ $(document).ready(function() {
 
 	$('#search input[name=\'search\']').on('keydown', function(e) {
 		if (e.keyCode == 13) {
-			$('header #search input[name=\'search\']').parent().find('button').trigger('click');
+			$('#search input[name=\'search\']').parent().find('button').trigger('click');
 		}
 	});
 
@@ -83,40 +137,48 @@ $(document).ready(function() {
 
 	// Product List
 	$('#list-view').click(function() {
+		$(this).addClass('selected');
+		$('#grid-view').removeClass('selected');
 		$('#content .product-grid > .clearfix').remove();
 
-		$('#content .row > .product-grid').attr('class', 'product-layout product-list col-xs-12');
-		$('#grid-view').removeClass('active');
-		$('#list-view').addClass('active');
+		
+		$('#content .product-layout').attr('class', 'product-layout product-list clearfix');
+		$('#content .product-list .col-image').addClass('col-sm-4 col-sms-4 col-smb-12');
+		$('#content .product-list .col-des').addClass('col-sm-8 col-sms-8 col-smb-12');
+		
+		
+		
 
 		localStorage.setItem('display', 'list');
 	});
-
+    
 	// Product Grid
 	$('#grid-view').click(function() {
+		$(this).addClass('selected');
+		$('#list-view').removeClass('selected');
 		// What a shame bootstrap does not take into account dynamically loaded columns
-		var cols = $('#column-right, #column-left').length;
+		cols = $('#column-right, #column-left').length;
 
 		if (cols == 2) {
-			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-6 col-md-6 col-sm-12 col-xs-12');
+			$('#content .product-layout').attr('class', 'product-layout product-grid module-style1 col-md-6 col-sm-6 col-xs-6 two-items');
 		} else if (cols == 1) {
-			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-xs-12');
+			$('#content .product-layout').attr('class', 'product-layout product-grid module-style1 col-lg-3 col-md-4 col-sm-6 col-xs-6 category');
 		} else {
-			$('#content .product-list').attr('class', 'product-layout product-grid col-lg-3 col-md-3 col-sm-6 col-xs-12');
+			$('#content .product-layout').attr('class', 'product-layout product-grid module-style1 col-md-3 col-sm-6 col-xs-6 four-items');
 		}
+		$('#content .product-grid .col-image').removeClass('col-sm-4 col-sms-4 col-smb-12');
+		$('#content .product-grid .col-des').removeClass('col-sm-8 col-sms-8 col-smb-12');
+		
+		
 
-		$('#list-view').removeClass('active');
-		$('#grid-view').addClass('active');
-
-		localStorage.setItem('display', 'grid');
+		 localStorage.setItem('display', 'grid');
 	});
 
 	if (localStorage.getItem('display') == 'list') {
+		
 		$('#list-view').trigger('click');
-		$('#list-view').addClass('active');
 	} else {
 		$('#grid-view').trigger('click');
-		$('#grid-view').addClass('active');
 	}
 
 	// Checkout
@@ -127,11 +189,11 @@ $(document).ready(function() {
 	});
 
 	// tooltips on hover
-	$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+	//$('[data-toggle=\'tooltip\']').tooltip({container: 'body', animation: false});
 
 	// Makes tooltips work on ajax generated content
 	$(document).ajaxStop(function() {
-		$('[data-toggle=\'tooltip\']').tooltip({container: 'body'});
+		//$('[data-toggle=\'tooltip\']').tooltip({container: 'body', animation: false});
 	});
 });
 
@@ -144,10 +206,10 @@ var cart = {
 			data: 'product_id=' + product_id + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
 			dataType: 'json',
 			beforeSend: function() {
-				$('#cart > button').button('loading');
+				$('#cart-total').button('loading');
 			},
 			complete: function() {
-				$('#cart > button').button('reset');
+				$('#cart-total').button('reset');
 			},
 			success: function(json) {
 				$('.alert, .text-danger').remove();
@@ -157,11 +219,11 @@ var cart = {
 				}
 
 				if (json['success']) {
-					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					$('body').before('<div class="alert alert-success">' + json['success'] + '<button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 					// Need to set timeout otherwise it wont update the total
 					setTimeout(function () {
-						$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+						$('#cart-total').html(json['total']);
 					}, 100);
 
 					$('html, body').animate({ scrollTop: 0 }, 'slow');
@@ -181,15 +243,15 @@ var cart = {
 			data: 'key=' + key + '&quantity=' + (typeof(quantity) != 'undefined' ? quantity : 1),
 			dataType: 'json',
 			beforeSend: function() {
-				$('#cart > button').button('loading');
+				$('#cart-total').button('loading');
 			},
 			complete: function() {
-				$('#cart > button').button('reset');
+				$('#cart-total').button('reset');
 			},
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+					$('#cart-total').html(json['total']);
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -210,15 +272,15 @@ var cart = {
 			data: 'key=' + key,
 			dataType: 'json',
 			beforeSend: function() {
-				$('#cart > button').button('loading');
+				$('#cart-total').button('loading');
 			},
 			complete: function() {
-				$('#cart > button').button('reset');
+				$('#cart-total').button('reset');
 			},
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+					$('#cart-total').html(json['total']);
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -245,15 +307,15 @@ var voucher = {
 			data: 'key=' + key,
 			dataType: 'json',
 			beforeSend: function() {
-				$('#cart > button').button('loading');
+				$('#cart-total').button('loading');
 			},
 			complete: function() {
-				$('#cart > button').button('reset');
+				$('#cart-total').button('reset');
 			},
 			success: function(json) {
 				// Need to set timeout otherwise it wont update the total
 				setTimeout(function () {
-					$('#cart > button').html('<span id="cart-total"><i class="fa fa-shopping-cart"></i> ' + json['total'] + '</span>');
+					$('#cart-total').html(json['total']);
 				}, 100);
 
 				if (getURLVar('route') == 'checkout/cart' || getURLVar('route') == 'checkout/checkout') {
@@ -284,11 +346,11 @@ var wishlist = {
 				}
 
 				if (json['success']) {
-					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					$('body').before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 				}
 
-				$('#wishlist-total span').html(json['total']);
-				$('#wishlist-total').attr('title', json['total']);
+				$('#wishlist-total > span').html(json['total']);
+				// $('#wishlist-total').attr('title', json['total']);
 
 				$('html, body').animate({ scrollTop: 0 }, 'slow');
 			},
@@ -313,7 +375,7 @@ var compare = {
 				$('.alert').remove();
 
 				if (json['success']) {
-					$('#content').parent().before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+					$('body').before('<div class="alert alert-success"><i class="fa fa-check-circle"></i> ' + json['success'] + ' <button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 
 					$('#compare-total').html(json['total']);
 
